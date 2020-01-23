@@ -1,0 +1,7 @@
+# Variables 
+    All Variables that are not to be changed will be declared final. 
+    All data an end user should not be able to see will also be declared 'transient' 
+    This will prevent data leakage and Trusted Field Clobbering. 
+# Autentication
+    See Google firebase Documentation
+    
