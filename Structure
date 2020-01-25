@@ -1,1 +1,14 @@
 # Structure and Dependencies
+This currently only runs on a Java backend with a condensed singular class that has 3 methods. 
+A main class could have been made however the current state of this program does not demand this. 
+
+The following Java Libraries were used: 
+java.net.socket
+java.net.InitSocketAddress
+java.uil.ArrayLIst
+java.io.filereader
+java.io.BUfferReader
+
+The JSch Library was used and the following import was used: 
+com.jcraft.Jsch.*
+
