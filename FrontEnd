@@ -1,0 +1,48 @@
+import java.time.LocalDate;
+import java.util.Optional;
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class FrontEnd extends Application {
+
+    public void start(Stage primaryStage) {
+        Dialog<Results> dialog = new Dialog<>();
+        dialog.setTitle("Dialog Test");
+        dialog.setHeaderText("Please specify…");
+        DialogPane dialogPane = dialog.getDialogPane();
+        TextField hostname = new TextField("Hostname");
+        TextField ip = new TextField("IP Address");
+        TextField sshPort = new TextField("SSH Port");
+        dialogPane.setContent(new VBox(8, hostname, ip, sshPort));
+        Platform.runLater(hostname::requestFocus);
+    }
+
+
+    private static class Results {
+
+        String hostname;
+        String ip;
+        String sshPort;
+
+        public Results(String h, String i, String s) {
+            this.hostname = h;
+            this.ip = i;
+            this.sshPort = s;
+        }
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
