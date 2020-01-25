@@ -12,3 +12,4 @@ JSch Framework for SSH protocol hacking
 # Credits
 
  https://www.hackingloops.com/ssh-password-cracker-java/
+https://stackoverflow.com/questions/44147595/get-more-than-two-inputs-in-a-javafx-dialog
