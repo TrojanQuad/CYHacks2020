@@ -1,7 +1,11 @@
-# Variables 
-    All Variables that are not to be changed will be declared final. 
-    All data an end user should not be able to see will also be declared 'transient' 
-    This will prevent data leakage and Trusted Field Clobbering. 
-# Autentication
-    See Google firebase Documentation
-    
+#Security 
+This application deals with highly sensitive user information. There is inherent security in design becasue all variables that are not
+needed to be public are public and variables that should not be access or modified by the user are transient. (There are currently no transients needed) 
+
+This program lacks a GUI and thus a user must be technically adpet, the limits the scope of the program so that general users will not be 
+able to exploit this program. We will eventaully be adding a frontend that will have a password. 
+
+This program also understands the common security practice of changing the port that SSH is used on. Therefore we allowed the user to specifiy 
+the port that is available to be used. 
+
+The maximum amount of security practical for this program has been used at this point. 
