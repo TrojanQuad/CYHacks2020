@@ -1,6 +1,6 @@
-public class NewJFrame extends javax.swing.JFrame {
+public class User extends javax.swing.JFrame {
 
-    public NewJFrame() {
+    public User() {
         initComponents();
     }
 
