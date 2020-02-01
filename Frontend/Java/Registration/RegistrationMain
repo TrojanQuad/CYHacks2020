@@ -42,11 +42,12 @@ public class Registration extends Application {
        //Action Events for clikcing the buttons 
         personalVWork.continueOn.setOnAction(e -> window.setScene(Registration2));
         userAccount.back.setOnAction(e -> window.setScene(Registration1));
+        userAccount.login.setOnAction(e -> userAccount.checkInput());
         
         //Input Checking Stuff 
         personalVWork.personal.setToggleGroup(personalVWork.type);
         personalVWork.work.setToggleGroup(personalVWork.type);
 
     }
-
+        
 }
