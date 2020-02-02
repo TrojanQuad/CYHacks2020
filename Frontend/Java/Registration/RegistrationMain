@@ -18,29 +18,40 @@ public class Registration extends Application {
         //Creates the Stackpanes that will be parts of the scences
         StackPane base1 = new StackPane();
         StackPane base2 = new StackPane();
+        StackPane signIn = new StackPane();
+        StackPane LogIn = new StackPane();
         
         //Creates 2 scenes to be switched between
         Scene Registration1; 
         Scene Registration2;
+        Scene EntryType;
+        Scene Login;
         
         /*  Adds the two panes to different stackpanes
         *   these will be added to scenes 
         */
         base1.getChildren().add(personalVWork.selectType());
         base2.getChildren().add(userAccount.accountInfo());
+        signIn.getChildren().add(Signin.selectEntry());
+        LogIn.getChildren().add(Signin.Login());
         Registration1 = new Scene(base1, 600, 600);
         Registration2 = new Scene(base2, 600, 600);
-        
+        EntryType = new Scene(signIn, 600, 600);
+        Login = new Scene(LogIn, 600, 600); 
         
         
         //sets the primary stage to be called window... this is just my preference. Sets the title of the window and allows it to be shown. 
         window = primaryStage;
         window.setTitle("Account Information");
-        window.setScene(Registration1);
+        window.setScene(EntryType);
         window.show();
 
        //Action Events for clikcing the buttons 
+        Signin.Register.setOnAction(e -> window.setScene(Registration1));
+        Signin.logon.setOnAction(e -> window.setScene(Login)); 
+        Signin.back1.setOnAction(e -> window.setScene(EntryType));
         personalVWork.continueOn.setOnAction(e -> window.setScene(Registration2));
+        personalVWork.toEntryType.setOnAction(e -> window.setScene(EntryType)); 
         userAccount.back.setOnAction(e -> window.setScene(Registration1));
         userAccount.login.setOnAction(e -> userAccount.checkInput());
         
