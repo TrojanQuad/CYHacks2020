@@ -14,6 +14,7 @@ public class personalVWork extends Registration {
     public static RadioButton work = new RadioButton("Work");
     public static Button continueOn = new Button("Continue");  
     public static ToggleGroup type = new ToggleGroup();
+    public static Button toEntryType = new Button("Back");
     
    
     //Method to create the personal v work account pane
@@ -27,10 +28,12 @@ public class personalVWork extends Registration {
       grid.add(new Label("Select Account Type"),0,2);
       grid.add(personal,0,3);
       grid.add(work,0,4);
-      grid.add(continueOn, 0, 5);
+      grid.add(continueOn, 1, 5);
+      grid.add(toEntryType, 0,5); 
       
      return grid;
     }
+    
 
     
 }
