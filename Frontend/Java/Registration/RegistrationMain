@@ -30,7 +30,7 @@ public class Registration extends Application {
         /*  Adds the two panes to different stackpanes
         *   these will be added to scenes 
         */
-        base1.getChildren().add(personalVWork.selectType());
+        base1.getChildren().add(PVW.selectType());
         base2.getChildren().add(userAccount.accountInfo());
         signIn.getChildren().add(Signin.selectEntry());
         LogIn.getChildren().add(Signin.Login());
@@ -48,17 +48,16 @@ public class Registration extends Application {
 
        //Action Events for clikcing the buttons 
         Signin.Register.setOnAction(e -> window.setScene(Registration1));
-        Signin.logon.setOnAction(e -> window.setScene(Login)); 
+        Signin.toLogin.setOnAction(e -> window.setScene(Login)); 
         Signin.back1.setOnAction(e -> window.setScene(EntryType));
-        personalVWork.continueOn.setOnAction(e -> window.setScene(Registration2));
-        personalVWork.toEntryType.setOnAction(e -> window.setScene(EntryType)); 
+        PVW.continueOn.setOnAction(e -> window.setScene(Registration2));
+        PVW.toEntryType.setOnAction(e -> window.setScene(EntryType)); 
         userAccount.back.setOnAction(e -> window.setScene(Registration1));
         userAccount.login.setOnAction(e -> userAccount.checkInput());
         
         //Input Checking Stuff 
-        personalVWork.personal.setToggleGroup(personalVWork.type);
-        personalVWork.work.setToggleGroup(personalVWork.type);
-
+        PVW.personal.setToggleGroup(PVW.type);
+        PVW.work.setToggleGroup(PVW.type);
     }
         
 }

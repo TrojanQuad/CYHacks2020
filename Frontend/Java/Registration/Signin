@@ -8,9 +8,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.ToggleGroup;
 
-public class Signin extends Registration {
+public class Signin extends Registration{
 
-    public static Button logon = new Button("SignIn");  
+    public static Button toLogin = new Button("SignIn");  
     public static Button Register = new Button("Register");
     public static ToggleGroup type = new ToggleGroup();
     public static Button back1 = new Button("Back");
@@ -24,7 +24,7 @@ public class Signin extends Registration {
     public static Pane selectEntry(){ 
      //creates grid pane grid to be returned to window
       GridPane grid = new GridPane(); 
-      grid.add(logon, 2, 2 ); 
+      grid.add(toLogin, 2, 2 ); 
       grid.add(Register, 2, 3 ); 
      return grid;
     }
