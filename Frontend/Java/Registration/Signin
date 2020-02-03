@@ -10,11 +10,11 @@ import javafx.scene.control.ToggleGroup;
 
 public class Signin extends Registration{
 
-    public static Button toLogin = new Button("SignIn");  
-    public static Button Register = new Button("Register");
-    public static ToggleGroup type = new ToggleGroup();
+    public static Button toLoginPage = new Button("Signin");  
+    public static Button toRegister = new Button("Register");
+    public static ToggleGroup accountType = new ToggleGroup();
     public static Button back1 = new Button("Back");
-    public static Button login = new Button("Login");
+    public static Button loginToAccount = new Button("Login");
     public static TextField username = new TextField(); 
     public static PasswordField password = new PasswordField(); 
     
@@ -24,12 +24,12 @@ public class Signin extends Registration{
     public static Pane selectEntry(){ 
      //creates grid pane grid to be returned to window
       GridPane grid = new GridPane(); 
-      grid.add(toLogin, 2, 2 ); 
-      grid.add(Register, 2, 3 ); 
+      grid.add(toLoginPage, 2, 2 ); 
+      grid.add(toRegister, 2, 3 ); 
      return grid;
     }
     
-    public static Pane Login(){
+    public static Pane LoginPage(){
     GridPane grid = new GridPane(); 
       grid.setPadding(new Insets(5, 5, 5, 5));
       grid.setHgap(5);
@@ -38,7 +38,7 @@ public class Signin extends Registration{
       grid.add(username, 1, 0);
       grid.add(new Label("Password"), 0, 1);
       grid.add(password, 1, 1);
-      grid.add(login, 1, 2);
+      grid.add(loginToAccount, 1, 2);
       grid.add(back1,0,2);
      return grid;   
     }
