@@ -26,3 +26,4 @@ Now you can do the run again but this time make sure that you use 3 arguements i
 
 
 https://stackoverflow.com/questions/44147595/get-more-than-two-inputs-in-a-javafx-dialog
+http://tutorials.jenkov.com/javafx/tabpane.html

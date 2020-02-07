@@ -9,7 +9,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 
 
-public class PVW{
+public class PVW extends Registration {
     
     public static RadioButton personal = new RadioButton("Personal");
     public static RadioButton work = new RadioButton("Work");
@@ -40,5 +40,7 @@ public class PVW{
 
      return grid;
     }
-   
+    
+
+    
 }

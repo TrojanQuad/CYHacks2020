@@ -27,4 +27,20 @@ public class userAccount {
       grid.add(back,0,2);
      return grid;   
     }
+
+    static void checkInput() {
+      if(checkUser() == false  || strengthPass() == false){
+         accountAlert.display("Registration Error", "Username or Password not found" );
+      }else{
+       accountAlert.display("Registration Success", "This is just a placeholder");
+      }
+    }
+    
+    static boolean strengthPass(){
+        return !(password.getText().isEmpty()== true || password.getLength() < 8);
+    }
+    static boolean checkUser(){
+        return !(username.getText().isEmpty()==true || username.getLength() <8); 
+    }
+    
 }
