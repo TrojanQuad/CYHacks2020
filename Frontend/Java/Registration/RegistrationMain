@@ -4,11 +4,15 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class Registration extends Application {
+public class FrontendMain extends Application {
 
     //Creates the 2 scenes the user will see at first 
     static Stage window;
-
+    
+    //Scenes that will have to be set from other classes -- used for parsing user data. 
+    public static Scene PersonalAccountScene; 
+    public static Scene WorkAccountScene; 
+    
     public static void main(String[] args) {
         launch(args);
     }
@@ -16,30 +20,40 @@ public class Registration extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         //Creates the Stackpanes that will be parts of the scences
-        StackPane base1 = new StackPane();
-        StackPane base2 = new StackPane();
-        StackPane signIn = new StackPane();
-        StackPane LogIn = new StackPane();
+        StackPane accountTypeSelection = new StackPane();
+        StackPane newUserInformation = new StackPane();
+        StackPane signOrRegister = new StackPane();
+        StackPane loginPane = new StackPane();
+        StackPane WorkAccountPane = new StackPane(); 
+        StackPane PersonalAccountPane = new StackPane(); 
+
         
-        //Creates 2 scenes to be switched between
+        
+        
+        //Creates the scences 
         Scene Registration1; 
         Scene Registration2;
         Scene EntryType;
         Scene Login;
         
-        /*  Adds the two panes to different stackpanes
-        *   these will be added to scenes 
-        */
-        base1.getChildren().add(personalVWork.selectType());
-        base2.getChildren().add(userAccount.accountInfo());
-        signIn.getChildren().add(Signin.selectEntry());
-        LogIn.getChildren().add(Signin.Login());
-        Registration1 = new Scene(base1, 600, 600);
-        Registration2 = new Scene(base2, 600, 600);
-        EntryType = new Scene(signIn, 600, 600);
-        Login = new Scene(LogIn, 600, 600); 
+        //Adding gridpanes and other panes to their stackpane 
+        accountTypeSelection.getChildren().add(PVW.selectType());
+        newUserInformation.getChildren().add(userAccount.accountInfo());
+        signOrRegister.getChildren().add(Signin.selectEntry());
+        loginPane.getChildren().add(Signin.LoginPage());
+        PersonalAccountPane.getChildren().add(PersonalAccount.PersonalAccountHolder());
         
         
+        
+        //Setting the scene to hold a stackpane 
+        Registration1 = new Scene(accountTypeSelection, 600, 600);
+        Registration2 = new Scene(newUserInformation, 600, 600);
+        EntryType = new Scene(signOrRegister, 600, 600);
+        Login = new Scene(loginPane, 600, 600);
+        PersonalAccountScene = new Scene(PersonalAccountPane, 600,600); 
+        WorkAccountScene = new Scene(WorkAccountPane, 600, 600);
+    
+
         //sets the primary stage to be called window... this is just my preference. Sets the title of the window and allows it to be shown. 
         window = primaryStage;
         window.setTitle("Account Information");
@@ -47,17 +61,23 @@ public class Registration extends Application {
         window.show();
 
        //Action Events for clikcing the buttons 
-        Signin.Register.setOnAction(e -> window.setScene(Registration1));
-        Signin.logon.setOnAction(e -> window.setScene(Login)); 
+        Signin.toRegister.setOnAction(e -> window.setScene(Registration1));
+        Signin.toLoginPage.setOnAction(e -> window.setScene(Login)); 
         Signin.back1.setOnAction(e -> window.setScene(EntryType));
-        personalVWork.continueOn.setOnAction(e -> window.setScene(Registration2));
-        personalVWork.toEntryType.setOnAction(e -> window.setScene(EntryType)); 
+        PVW.continueOn.setOnAction(e -> window.setScene(Registration2));
+        PVW.toEntryType.setOnAction(e -> window.setScene(EntryType)); 
         userAccount.back.setOnAction(e -> window.setScene(Registration1));
-        userAccount.login.setOnAction(e -> userAccount.checkInput());
+        userAccount.login.setOnAction(e -> PasswordLogin.checkNewInput());
+        Signin.loginToAccount.setOnAction(e -> PasswordLogin.checkLoginInput()); 
         
-        //Input Checking Stuff 
-        personalVWork.personal.setToggleGroup(personalVWork.type);
-        personalVWork.work.setToggleGroup(personalVWork.type);
+        //Registration Selecting Account Type-- Creates button group 
+        PVW.personal.setToggleGroup(PVW.type);
+        PVW.work.setToggleGroup(PVW.type);
+        
+        PersonalAccount.PersonalTabPane.getTabs().add(PersonalAccount.Home);
+        PersonalAccount.PersonalTabPane.getTabs().add(PersonalAccount.PassStorage);
+        PersonalAccount.PersonalTabPane.getTabs().add(PersonalAccount.Strength); 
+        PersonalAccount.PersonalTabPane.getTabs().add(PersonalAccount.UserAccount);
 
     }
         
