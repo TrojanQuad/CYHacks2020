@@ -1,0 +1,59 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class WorkAccount extends Application{
+
+    public void start(Stage primaryStage){
+        Label user = new Label("  User:  ");
+        Label storePass = new Label("  Password:  ");
+        Label account= new Label("  Account:  ");
+        TextField username = new TextField();
+        TextField storePassword = new TextField();
+        TextField accountType = new TextField();
+        HBox inputs = new HBox(user, username, storePass, storePassword, account, accountType);
+        
+        Label space = new Label("                                                                             ");
+        Button store = new Button("        Store        ");
+        HBox buttonPlace = new HBox(space, store);
+        
+        ScrollPane scrollPane = new ScrollPane();
+        VBox storage = new VBox(inputs, buttonPlace, scrollPane);
+        
+        Label strengthPass = new Label("                                 Password:  ");
+        TextField strengthPassword = new TextField();
+        HBox strength = new HBox(strengthPass, strengthPassword);
+        
+        Label suggestion = new Label("               Suggested Password:  ");
+        VBox passwordStrength = new VBox(strength, suggestion);
+        
+        TabPane workTabPane = new TabPane();
+        Tab home = new Tab("Home");
+        Tab passStorage = new Tab("Password Storage", storage);
+        Tab passStrength = new Tab("Password Strength", passwordStrength);
+        Tab userAccount = new Tab("User Account");
+        Tab brute = new Tab("Brute Force");
+        
+        workTabPane.getTabs().add(home);
+        workTabPane.getTabs().add(passStorage);
+        workTabPane.getTabs().add(passStrength);
+        workTabPane.getTabs().add(userAccount);
+        workTabPane.getTabs().add(brute);
+
+        VBox vBox = new VBox(workTabPane);
+        Scene scene = new Scene(vBox);
+
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Work Account");
+
+        primaryStage.show();
+    }
+}
