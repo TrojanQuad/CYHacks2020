@@ -77,11 +77,11 @@ import javafx.scene.layout.Pane;
 
 public class WorkAccount{
    public static TabPane workTabPane = new TabPane();
-    public static Tab home = new Tab("Home");
-    public static Tab passStorage = new Tab("Password Storage", storage);
-    public static Tab passStrength = new Tab("Password Strength", passwordStrength);
-    public static Tab userAccount = new Tab("User Account");
-    public static Tab brute = new Tab("Brute Force");
+    public static Tab home = new Tab("Home", WorkHome());
+    public static Tab passStorage = new Tab("Password Storage", AccountStorage());
+    public static Tab passStrength = new Tab("Password Strength", AccountStrength());
+    public static Tab userAccount = new Tab("User Account", UserAccount());
+    public static Tab brute = new Tab("Brute Force", BruteForce());
     
     
     public static Pane WorkAccountHolder(){
@@ -91,10 +91,9 @@ public class WorkAccount{
        return workTopMenu;
     }
     
-    public static Pane Home(){
-        GridPane home = new GridPane();
-        
-        return home;
+    public static Pane WorkHome(){
+        GridPane WorkHomePane = new GridPane();
+        return WorkHomePane;
     }
     
     public static Pane AccountStorage(){
@@ -114,7 +113,6 @@ public class WorkAccount{
         
         return account;
     }
-    
     public static Pane BruteForce(){
         GridPane force = new GridPane();
         
