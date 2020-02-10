@@ -57,3 +57,67 @@ public class WorkAccount extends Application{
         primaryStage.show();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+import javafx.geometry.Insets;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+
+public class WorkAccount{
+   public static TabPane workTabPane = new TabPane();
+    public static Tab home = new Tab("Home");
+    public static Tab passStorage = new Tab("Password Storage", storage);
+    public static Tab passStrength = new Tab("Password Strength", passwordStrength);
+    public static Tab userAccount = new Tab("User Account");
+    public static Tab brute = new Tab("Brute Force");
+    
+    
+    public static Pane WorkAccountHolder(){
+        BorderPane workTopMenu = new BorderPane();  
+        workTopMenu.setPadding(new Insets(5,5,5,5)); 
+        workTopMenu.setTop(workTabPane);
+       return workTopMenu;
+    }
+    
+    public static Pane Home(){
+        GridPane home = new GridPane();
+        
+        return home;
+    }
+    
+    public static Pane AccountStorage(){
+        GridPane storage = new GridPane();
+        
+        return storage;
+    }
+    
+    public static Pane AccountStrength(){
+        GridPane strength = new GridPane();
+        
+        return strength;
+    }
+    
+    public static Pane UserAccount(){
+        GridPane account = new GridPane();
+        
+        return account;
+    }
+    
+    public static Pane BruteForce(){
+        GridPane force = new GridPane();
+        
+        return force;
+    }
+}
