@@ -1,0 +1,80 @@
+
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+
+
+public class PersonalAccount {
+
+    public static TabPane PersonalTabPane = new TabPane(); 
+    public static Tab Home = new Tab("Home", PersonalHome());
+    
+    public static Tab PassStorage = new Tab("Storage", PersonalPassStorage());
+    static TextField StorageUserName = new TextField();
+    static  TextField StoragePassWord = new TextField();
+    static  TextField StorageAccount = new TextField();
+    static Button StorageSubmit = new Button("Store"); 
+    static final ScrollPane StoredPassword = new ScrollPane(); 
+    
+    public static Tab Strength = new Tab("Strength", PersonalStrength()); 
+
+    public static Tab UserAccount = new Tab("Account", PersonalUserAccount());
+    
+    public static Pane PersonalAccountHolder(){ 
+     //creates grid pane grid to be returned to window
+      BorderPane topmenu = new BorderPane();
+      topmenu.setPadding(new Insets(5, 5, 5, 5));
+      topmenu.setTop(PersonalTabPane);
+     return topmenu;
+    }  
+    public static Pane PersonalHome(){
+        GridPane HomePane = new GridPane();
+        
+        return null;
+}
+    public static Pane PersonalPassStorage(){
+        GridPane PassStoragePane = new GridPane(); 
+        PassStoragePane.setPadding(new Insets(6, 6, 6, 6));
+        PassStoragePane.setAlignment(Pos.CENTER);
+        PassStoragePane.setHgap(5);
+        PassStoragePane.setVgap(5);
+        PassStoragePane.add(new Label("User:"), 0,0);
+        PassStoragePane.add(StorageUserName, 1 ,0);
+        PassStoragePane.add(new Label("Password: "), 2, 0); 
+        PassStoragePane.add(StoragePassWord, 3, 0);
+        PassStoragePane.add(new Label("Account: "),4,0);
+        PassStoragePane.add(StorageAccount, 5,0); 
+        PassStoragePane.add(StorageSubmit, 3,1); 
+        PassStoragePane.add(StoredPassword, 0, 2);      
+        return PassStoragePane;
+}
+    public static Pane PersonalStrength(){
+        GridPane PersonalStrengthPane = new GridPane(); 
+        PersonalStrengthPane.setPadding(new Insets(6, 6, 6, 6));
+        PersonalStrengthPane.setAlignment(Pos.CENTER);
+        PersonalStrengthPane.setHgap(5);
+        PersonalStrengthPane.setVgap(5);
+        PersonalStrengthPane.add(new Label("Password:"),0,0 );
+
+        
+        return PersonalStrengthPane;
+    } 
+    public static Pane PersonalUserAccount(){
+        GridPane PersonalUserAccountPane = new GridPane(); 
+        PersonalUserAccountPane.setPadding(new Insets(6, 6, 6, 6));
+        PersonalUserAccountPane.setAlignment(Pos.CENTER);
+        PersonalUserAccountPane.setHgap(5);
+        PersonalUserAccountPane.setVgap(5);
+        return PersonalUserAccountPane;
+}
+     
+    }
+    
