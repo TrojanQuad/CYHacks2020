@@ -99,9 +99,26 @@ public class WorkAccount{
     }
     
     public static Pane AccountStorage(){
-        GridPane storage = new GridPane();
+        TextField storageUserName = new TextField();
+        TextField storagePassWord = new TextField();
+        TextField storageAccount = new TextField();
+        Button storageSubmit = new Button("Store"); 
+        ScrollPane storedPassword = new ScrollPane();
         
-        return storage;
+        GridPane passStoragePane = new GridPane(); 
+        passStoragePane.setPadding(new Insets(6, 6, 6, 6));
+        passStoragePane.setAlignment(Pos.CENTER);
+        passStoragePane.setHgap(5);
+        passStoragePane.setVgap(5);
+        passStoragePane.add(new Label("User:"), 0,0);
+        passStoragePane.add(storageUserName, 1 ,0);
+        passStoragePane.add(new Label("Password: "), 2, 0); 
+        passStoragePane.add(storagePassWord, 3, 0);
+        passStoragePane.add(new Label("Account: "),4,0);
+        passStoragePane.add(storageAccount, 5,0); 
+        passStoragePane.add(storageSubmit, 3,1); 
+        passStoragePane.add(storedPassword, 0, 2);      
+        return passStoragePane;
     }
     
     public static Pane AccountStrength(){
@@ -116,8 +133,24 @@ public class WorkAccount{
         return account;
     }
     public static Pane BruteForce(){
-        GridPane force = new GridPane();
+        TextField target = new TextField("Target");
+        TextField port = new TextField("Port");
+        TextField dict = new TextField("Dict");
+        Button go = new Button("Go");
+        ComboBox type = new ComboBox();
+        type.getItems().add("SSH");
         
-        return force;
+        GridPane bruteForcePane = new GridPane();
+        bruteForcePane.setPadding(new Insets(6, 6, 6, 6));
+        bruteForcePane.setAlignment(Pos.CENTER);
+        bruteForcePane.setHgap(5);
+        bruteForcePane.setVgap(5);
+        bruteForcePane.add(target, 2, 0);
+        bruteForcePane.add(port, 4, 0);
+        bruteForcePane.add(dict, 2, 2);
+        bruteForcePane.add(go, 4, 2);
+        bruteForcePane.add(type, 0, 0);
+        
+        return bruteForcePane;
     }
 }
