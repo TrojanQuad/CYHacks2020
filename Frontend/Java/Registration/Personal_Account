@@ -1,4 +1,3 @@
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -13,20 +12,13 @@ import javafx.scene.layout.Pane;
 
 
 public class PersonalAccount {
-
+    
     public static TabPane PersonalTabPane = new TabPane(); 
-    public static Tab Home = new Tab("Home", PersonalHome());
-    
-    public static Tab PassStorage = new Tab("Storage", PersonalPassStorage());
-    static TextField StorageUserName = new TextField();
-    static  TextField StoragePassWord = new TextField();
-    static  TextField StorageAccount = new TextField();
-    static Button StorageSubmit = new Button("Store"); 
-    static final ScrollPane StoredPassword = new ScrollPane(); 
-    
-    public static Tab Strength = new Tab("Strength", PersonalStrength()); 
-
-    public static Tab UserAccount = new Tab("Account", PersonalUserAccount());
+    public static Tab PersonalHome = new Tab("Home", PersonalHome()); 
+    public static Tab PersonalPassStorage = new Tab("Storage",AccountStorage()); 
+    public static Tab PersonalStrength = new Tab("Strength",AccountStrength()); 
+    public static Tab PersonalUserAccount = new Tab("User Account",UserAccount()); 
+    private static String suggestPassword;
     
     public static Pane PersonalAccountHolder(){ 
      //creates grid pane grid to be returned to window
@@ -35,46 +27,76 @@ public class PersonalAccount {
       topmenu.setTop(PersonalTabPane);
      return topmenu;
     }  
-    public static Pane PersonalHome(){
-        GridPane HomePane = new GridPane();
+    
+      public static Pane AccountStorage(){
+        TextField storageUserName = new TextField();
+        TextField storagePassWord = new TextField();
+        TextField storageAccount = new TextField();
+        Button storageSubmit = new Button("Store"); 
+        ScrollPane storedPassword = new ScrollPane();
         
-        return null;
-}
-    public static Pane PersonalPassStorage(){
-        GridPane PassStoragePane = new GridPane(); 
-        PassStoragePane.setPadding(new Insets(6, 6, 6, 6));
-        PassStoragePane.setAlignment(Pos.CENTER);
-        PassStoragePane.setHgap(5);
-        PassStoragePane.setVgap(5);
-        PassStoragePane.add(new Label("User:"), 0,0);
-        PassStoragePane.add(StorageUserName, 1 ,0);
-        PassStoragePane.add(new Label("Password: "), 2, 0); 
-        PassStoragePane.add(StoragePassWord, 3, 0);
-        PassStoragePane.add(new Label("Account: "),4,0);
-        PassStoragePane.add(StorageAccount, 5,0); 
-        PassStoragePane.add(StorageSubmit, 3,1); 
-        PassStoragePane.add(StoredPassword, 0, 2);      
-        return PassStoragePane;
-}
-    public static Pane PersonalStrength(){
-        GridPane PersonalStrengthPane = new GridPane(); 
-        PersonalStrengthPane.setPadding(new Insets(6, 6, 6, 6));
-        PersonalStrengthPane.setAlignment(Pos.CENTER);
-        PersonalStrengthPane.setHgap(5);
-        PersonalStrengthPane.setVgap(5);
-        PersonalStrengthPane.add(new Label("Password:"),0,0 );
+        GridPane PersonalPassStoragePane = new GridPane(); 
+        PersonalPassStoragePane.setPadding(new Insets(6, 6, 6, 6));
+        PersonalPassStoragePane.setAlignment(Pos.CENTER);
+        PersonalPassStoragePane.setHgap(5);
+        PersonalPassStoragePane.setVgap(5);
+        PersonalPassStoragePane.add(new Label("User:"), 0,0);
+        PersonalPassStoragePane.add(storageUserName, 1 ,0);
+        PersonalPassStoragePane.add(new Label("Password: "), 2, 0); 
+        PersonalPassStoragePane.add(storagePassWord, 3, 0);
+        PersonalPassStoragePane.add(new Label("Account: "),4,0);
+        PersonalPassStoragePane.add(storageAccount, 5,0); 
+        PersonalPassStoragePane.add(storageSubmit, 3,1); 
+        PersonalPassStoragePane.add(storedPassword, 0, 2);      
+        return PersonalPassStoragePane;
+    }
+       public static Pane PersonalHome(){
+        GridPane WorkHomePane = new GridPane();
+        return WorkHomePane;
+       }
+       
 
+    public static Pane AccountStrength(){
+        Label password = new Label("Password: ");
+        TextField userPassword = new TextField("");
+        Button check = new Button("Check");
+       Label suggestedPasswordLabel = new Label("Suggested Password: "); 
         
-        return PersonalStrengthPane;
-    } 
-    public static Pane PersonalUserAccount(){
-        GridPane PersonalUserAccountPane = new GridPane(); 
-        PersonalUserAccountPane.setPadding(new Insets(6, 6, 6, 6));
-        PersonalUserAccountPane.setAlignment(Pos.CENTER);
-        PersonalUserAccountPane.setHgap(5);
-        PersonalUserAccountPane.setVgap(5);
-        return PersonalUserAccountPane;
-}
-     
+        check.setOnAction(e -> {
+            suggestPassword = ("Suggested Password: "+ StrengthBackend.toStrongPassword(userPassword.getText())); 
+            suggestedPasswordLabel.setText(suggestPassword);
+        });
+   
+        GridPane strengthPane = new GridPane();
+        strengthPane.setPadding(new Insets(6, 6, 6, 6));
+        strengthPane.setAlignment(Pos.CENTER);
+        strengthPane.setHgap(5);
+        strengthPane.setVgap(5);
+        strengthPane.add(password, 0, 0);
+        strengthPane.add(userPassword, 1, 0);
+        strengthPane.add(check, 2, 0);
+        strengthPane.add(suggestedPasswordLabel, 0, 1);
+        return strengthPane;
     }
     
+    public static Pane UserAccount(){
+        Label changePassword = new Label("Change Password: ");
+        TextField newPassword = new TextField("New Password");
+        TextField confirmPassword = new TextField("Confirm Password");
+        Button change = new Button("Change");
+        
+        GridPane userAccountPane = new GridPane();
+        userAccountPane.setPadding(new Insets(6, 6, 6, 6));
+        userAccountPane.setAlignment(Pos.CENTER);
+        userAccountPane.setHgap(5);
+        userAccountPane.setVgap(5);
+        userAccountPane.add(changePassword, 0, 0);
+        userAccountPane.add(newPassword, 1, 0);
+        userAccountPane.add(confirmPassword, 1, 1);
+        userAccountPane.add(change, 1, 2);
+        
+        return userAccountPane;
+    }
+
+    
+}
