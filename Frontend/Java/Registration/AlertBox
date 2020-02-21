@@ -7,6 +7,7 @@ import javafx.geometry.*;
 public class accountAlert{
 
     public static void display(String title, String message) {
+        //Sets new Stage to pop window up in
         Stage window = new Stage();
 
         //Block events to other windows
