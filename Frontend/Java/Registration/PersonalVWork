@@ -9,30 +9,33 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 
 
-public class PVW extends Registration {
+public class PVW{
     
     public static RadioButton personal = new RadioButton("Personal");
     public static RadioButton work = new RadioButton("Work");
     public static Button continueOn = new Button("Continue");  
     public static ToggleGroup type = new ToggleGroup();
     public static Button toEntryType = new Button("Back");
-    private static final Label title = new Label("welcome to Password Analyzer");
-    
+    public static Label title = new Label("Welcome to Password Analyzer");
+    public static Label subtitle = new Label("Select Account Type"); 
    
     //Method to create the personal v work account pane
     public static Pane selectType(){ 
       GridPane grid = new GridPane(); 
         grid.setPadding(new Insets(6, 6, 6, 6));
         grid.setAlignment(Pos.CENTER);
-        grid.setStyle("-fx-background-color: #0f4c75;");
+        grid.setStyle("-fx-background-color: #121212;");
         toEntryType.setStyle("-fx-background-color: #3282b8; -fx-text-fill: #FFFFFF;");
         continueOn.setStyle("-fx-background-color: #3282b8; -fx-text-fill: #FFFFFF;");
-        
+        title.setStyle("-fx-text-fill: #FFFFFF; -fx-font-size: xx-large; -fx-word-wrap:normal;");
+        personal.setStyle("-fx-text-fill: #FFFFFF;");
+        work.setStyle("-fx-text-fill: #FFFFFF;"); 
+        subtitle.setStyle("-fx-text-fill: #FFFFFF;");
         
         grid.setHgap(5);
         grid.setVgap(5);
-        grid.add(title,0, 1);
-        grid.add(new Label("Select Account Type"),0,2);
+        grid.add(title,0, 1,5,1);
+        grid.add(subtitle,0,2);
         grid.add(personal,0,3);
         grid.add(work,0,4);
         grid.add(continueOn, 1, 6);
@@ -40,7 +43,5 @@ public class PVW extends Registration {
 
      return grid;
     }
-    
-
-    
+   
 }

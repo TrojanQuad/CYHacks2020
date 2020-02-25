@@ -1,5 +1,9 @@
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -68,8 +72,22 @@ public class FrontendMain extends Application {
         PVW.continueOn.setOnAction(e -> window.setScene(Registration2));
         PVW.toEntryType.setOnAction(e -> window.setScene(EntryType)); 
         userAccount.back.setOnAction(e -> window.setScene(Registration1));
-        userAccount.login.setOnAction(e -> PasswordLogin.checkNewInput());
-        Signin.loginToAccount.setOnAction(e -> PasswordLogin.checkLoginInput()); 
+        
+        //This is what creates a new user on the action event. It is triggered by a button click. 
+         userAccount.login.setOnAction((ActionEvent e) -> {
+            try { //beacuse checkNewInput creates a user when it is okay 
+                PasswordLogin.checkNewInput();
+            } catch (IOException ex) { //this adds a log that writing to the file didnt work 
+                Logger.getLogger(FrontendMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        Signin.loginToAccount.setOnAction((ActionEvent e) -> {
+            try {
+                PasswordLogin.checkNewInput();
+            } catch (IOException ex) {
+                Logger.getLogger(FrontendMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }); 
         
         //Registration Selecting Account Type-- Creates button group 
         PVW.personal.setToggleGroup(PVW.type);
