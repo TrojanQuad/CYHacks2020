@@ -12,124 +12,124 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 public class WorkAccount{
-   public static TabPane workTabPane = new TabPane();
-   public static Tab home = new Tab("Home", WorkHome());
-   public static Tab passStorage = new Tab("Password Storage", WorkAccountStorage());
-   public static Tab passStrength = new Tab("Password Strength", WorkAccountStrength());
-   public static Tab userAccount = new Tab("User Account", WorkUserAccount());
-   public static Tab brute = new Tab("Brute Force", BruteForce());
+        public static TabPane workTabPane = new TabPane();
+        public static Tab home = new Tab("Home", WorkHome());
+        public static Tab passStorage = new Tab("Password Storage", WorkAccountStorage());
+        public static Tab passStrength = new Tab("Password Strength", WorkAccountStrength());
+        public static Tab userAccount = new Tab("User Account", WorkUserAccount());
+        public static Tab brute = new Tab("Brute Force", BruteForce());
     
     
-   public static Pane WorkAccountHolder(){
-       	BorderPane workTopMenu = new BorderPane();  
-       	workTopMenu.setPadding(new Insets(5,5,5,5)); 
-       	workTopMenu.setTop(workTabPane);
-   	return workTopMenu;
-   }
+        public static Pane WorkAccountHolder(){
+                BorderPane workTopMenu = new BorderPane();  
+        	workTopMenu.setPadding(new Insets(5,5,5,5)); 
+       	        workTopMenu.setTop(workTabPane);
+          	return workTopMenu;
+        }
     
-   public static Pane WorkHome(){
-	GridPane WorkHomePane = new GridPane();
+        public static Pane WorkHome(){
+	        GridPane WorkHomePane = new GridPane();
        
-      	return WorkHomePane;
-   }
+      	        return WorkHomePane;
+        }
     
-    public static Pane WorkAccountStorage(){
-       	TextField storageUserName = new TextField();
-        PasswordField storagePassWord = new PasswordField();
-        TextField storageAccount = new TextField();
-        Button storageSubmit = new Button("Store"); 
-        ScrollPane storedPassword = new ScrollPane();
-        CheckBox changePassword = new CheckBox("");
+        public static Pane WorkAccountStorage(){
+       	        TextField storageUserName = new TextField();
+                PasswordField storagePassWord = new PasswordField();
+                TextField storageAccount = new TextField();
+                Button storageSubmit = new Button("Store"); 
+                ScrollPane storedPassword = new ScrollPane();
+                CheckBox changePassword = new CheckBox("");
         
-        GridPane workStoragePane = new GridPane(); 
-        workStoragePane.setPadding(new Insets(6, 6, 6, 6));
-        workStoragePane.setAlignment(Pos.CENTER);
-        workStoragePane.setHgap(5);
-        workStoragePane.setVgap(5);
-        workStoragePane.add(new Label("User:"), 0,0);
-        workStoragePane.add(storageUserName, 1 ,0);
-        workStoragePane.add(new Label("Password: "), 2, 0); 
-        workStoragePane.add(storagePassWord, 3, 0);
-        workStoragePane.add(new Label("Account: "),4,0);
-        workStoragePane.add(storageAccount, 5,0); 
-        workStoragePane.add(storageSubmit, 3,1); 
-        workStoragePane.add(storedPassword, 0, 2, 6, 1);
+                GridPane workStoragePane = new GridPane(); 
+                workStoragePane.setPadding(new Insets(6, 6, 6, 6));
+                workStoragePane.setAlignment(Pos.CENTER);
+                workStoragePane.setHgap(5);
+                workStoragePane.setVgap(5);
+                workStoragePane.add(new Label("User:"), 0,0);
+                workStoragePane.add(storageUserName, 1 ,0);
+                workStoragePane.add(new Label("Password: "), 2, 0); 
+                workStoragePane.add(storagePassWord, 3, 0);
+                workStoragePane.add(new Label("Account: "),4,0);
+                workStoragePane.add(storageAccount, 5,0); 
+                workStoragePane.add(storageSubmit, 3,1); 
+                workStoragePane.add(storedPassword, 0, 2, 6, 1);
         
-        storageSubmit.setOnAction(e -> {
-            String storageUserNameInput = storageUserName.getText();
-            String storagePassInput = storagePassWord.getText();
-            String storageAccountInput = storageAccount.getText();
-            if(StorageBackEnd.ValidInput(storageUserNameInput, storagePassInput, storageAccountInput)){
-                if(changePassword.isSelected()){
+                storageSubmit.setOnAction(e -> {
+                        String storageUserNameInput = storageUserName.getText();
+                        String storagePassInput = storagePassWord.getText();
+                        String storageAccountInput = storageAccount.getText();
+                        if(StorageBackEnd.ValidInput(storageUserNameInput, storagePassInput, storageAccountInput)){
+                                if(changePassword.isSelected()){
                     
-                }
-            }
-            else{
-                workStoragePane.add(new Label("Invalid username or password"), 4, 1, 2, 1);
-            }    
-        });
-            return workStoragePane;
-   }
+                                }
+                        }
+                        else{
+                                workStoragePane.add(new Label("Invalid username or password"), 4, 1, 2, 1);
+                        }    
+                });
+                return workStoragePane;
+        }
     
-   public static Pane WorkAccountStrength(){
-       Label password = new Label("Password: ");
-       TextField userPassword = new TextField();
-       Button check = new Button("Check");
-       Label suggestPassword = new Label("Suggested Password: ");
+        public static Pane WorkAccountStrength(){
+                Label password = new Label("Password: ");
+                TextField userPassword = new TextField();
+                Button check = new Button("Check");
+                Label suggestPassword = new Label("Suggested Password: ");
         
-       GridPane workStrengthPane = new GridPane();
-       workStrengthPane.setPadding(new Insets(6, 6, 6, 6));
-       workStrengthPane.setAlignment(Pos.CENTER);
-       workStrengthPane.setHgap(5);
-       workStrengthPane.setVgap(5);
-       workStrengthPane.add(password, 0, 0);
-       workStrengthPane.add(userPassword, 1, 0);
-       workStrengthPane.add(check, 2, 0);
-       workStrengthPane.add(suggestPassword, 0, 1);
+                GridPane workStrengthPane = new GridPane();
+                workStrengthPane.setPadding(new Insets(6, 6, 6, 6));
+                workStrengthPane.setAlignment(Pos.CENTER);
+                workStrengthPane.setHgap(5);
+                workStrengthPane.setVgap(5);
+                workStrengthPane.add(password, 0, 0);
+                workStrengthPane.add(userPassword, 1, 0);
+                workStrengthPane.add(check, 2, 0);
+                workStrengthPane.add(suggestPassword, 0, 1);
         
-        return workStrengthPane;
-    }
+                return workStrengthPane;
+        }
     
-    public static Pane WorkUserAccount(){
-       	Label changePassword = new Label("Change Password: ");
-       	PasswordField newPassword = new PasswordField();
-       	Label confirmPass = new Label("Confirm Password: ");
-       	PasswordField confirmPassword = new PasswordField();
-       	Button change = new Button("Change");
+        public static Pane WorkUserAccount(){
+       	        Label changePassword = new Label("Change Password: ");
+       	        PasswordField newPassword = new PasswordField();
+       	        Label confirmPass = new Label("Confirm Password: ");
+       	        PasswordField confirmPassword = new PasswordField();
+       	        Button change = new Button("Change");
        
-       	GridPane workAccountPane = new GridPane();
-       	workAccountPane.setPadding(new Insets(6, 6, 6, 6));
-       	workAccountPane.setAlignment(Pos.CENTER);
-       	workAccountPane.setHgap(5);
-       	workAccountPane.setVgap(5);
-       	workAccountPane.add(changePassword, 0, 0);
-       	workAccountPane.add(newPassword, 1, 0);
-       	workAccountPane.add(confirmPass, 0, 1);
-       	workAccountPane.add(confirmPassword, 1, 1);
-       	workAccountPane.add(change, 1, 2);
+       	        GridPane workAccountPane = new GridPane();
+       	        workAccountPane.setPadding(new Insets(6, 6, 6, 6));
+       	        workAccountPane.setAlignment(Pos.CENTER);
+       	        workAccountPane.setHgap(5);
+       	        workAccountPane.setVgap(5);
+       	        workAccountPane.add(changePassword, 0, 0);
+       	        workAccountPane.add(newPassword, 1, 0);
+        	workAccountPane.add(confirmPass, 0, 1);
+       	        workAccountPane.add(confirmPassword, 1, 1);
+         	workAccountPane.add(change, 1, 2);
        
-       	return workAccountPane;
-    }
+       	        return workAccountPane;
+        }
 
-    public static Pane BruteForce(){
-       	TextField target = new TextField("Target");
-       	TextField port = new TextField("Port");
-       	TextField dict = new TextField("Dict");
-       	Button go = new Button("Go");
-       	ComboBox type = new ComboBox();
-       	type.getItems().add("SSH");
+        public static Pane BruteForce(){
+       	        TextField target = new TextField("Target");
+       	        TextField port = new TextField("Port");
+       	        TextField dict = new TextField("Dict");
+       	        Button go = new Button("Go");
+       	        ComboBox type = new ComboBox();
+       	        type.getItems().add("SSH");
        
-       	GridPane bruteForcePane = new GridPane();
-       	bruteForcePane.setPadding(new Insets(6, 6, 6, 6));
-       	bruteForcePane.setAlignment(Pos.CENTER);
-       	bruteForcePane.setHgap(5);
-       	bruteForcePane.setVgap(5);
-       	bruteForcePane.add(target, 2, 0);
-       	bruteForcePane.add(port, 4, 0);
-       	bruteForcePane.add(dict, 2, 2);
-       	bruteForcePane.add(go, 4, 2);
-       	bruteForcePane.add(type, 0, 0);
+       	        GridPane bruteForcePane = new GridPane();
+       	        bruteForcePane.setPadding(new Insets(6, 6, 6, 6));
+        	bruteForcePane.setAlignment(Pos.CENTER);
+       	        bruteForcePane.setHgap(5);
+          	bruteForcePane.setVgap(5);
+       	        bruteForcePane.add(target, 2, 0);
+             	bruteForcePane.add(port, 4, 0);
+       	        bruteForcePane.add(dict, 2, 2);
+           	bruteForcePane.add(go, 4, 2);
+       	        bruteForcePane.add(type, 0, 0);
        
-       	return bruteForcePane;
-    }
+         	return bruteForcePane;
+        }
 }
