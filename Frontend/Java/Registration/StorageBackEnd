@@ -13,8 +13,6 @@ public class StorageBackEnd {
     
     public static void Store() throws IOException{
         FileWriter writeFile = new FileWriter(file, true);
-        PrintWriter printWriter = new PrintWriter(writeFile);
-        Reader fileReader = new FileReader("storage.txt");
         try{
             writeFile.write("-U");
             writeFile.write(username + "\n");
