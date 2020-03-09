@@ -79,17 +79,21 @@ public class FrontendMain extends Application {
                 PasswordLogin.checkNewInput();
             } catch (IOException ex) { //this adds a log that writing to the file didnt work 
                 Logger.getLogger(FrontendMain.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(FrontendMain.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
          
-          Signin.loginToAccount.setOnAction((ActionEvent e) -> window.setScene(PersonalAccountScene));
-              /*try{
+          Signin.loginToAccount.setOnAction((ActionEvent e) -> {
+             try{
               PasswordLogin.LoginReturningUser();
               } catch
               (IOException ex) { //this adds a log that writing to the file didnt work
               Logger.getLogger(FrontendMain.class.getName()).log(Level.SEVERE, null, ex);
-              }
-              });*/
+              } catch (Exception ex) {
+                Logger.getLogger(FrontendMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+              });
 
         
         //Registration Selecting Account Type-- Creates button group 
