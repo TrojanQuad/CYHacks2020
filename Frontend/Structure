@@ -1,13 +1,16 @@
-Application (Java)
+
 | 
 | 
 | Registration (Main Method) 
 | | 
-| | 
-| | userAccounts
-| | personalVWork
-| | Signin
+| userAccounts
+| personalVWork
+| Signin
+|PasswordLogin
+|PasswordCrypto
 | 
-|
+|Personal Account
+| Work Account
+| Strength Backend 
 | Accountalert
 
