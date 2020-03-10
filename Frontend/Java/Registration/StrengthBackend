@@ -1,0 +1,23 @@
+
+public class StrengthBackend {
+    public static void main(String[] args) {
+        
+    }
+    public static String toStrongPassword(String str){
+       String s1="";
+       String emptyInput = "Password cannot be empty"; 
+       String tooShort = "Password must be at least 8 Charcaters";
+       
+       if(str.trim().isEmpty()){
+           return emptyInput; 
+       }else if(str.length() >= 8){
+        str =  str.replaceAll("e", "3").replaceAll("a","@").trim().replaceAll(" ", "_"); 
+        return str; 
+      }else if(str.length()<8){
+          return tooShort; 
+   
+      }
+       return str; 
+    }
+    
+}
