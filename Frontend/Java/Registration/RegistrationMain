@@ -104,6 +104,10 @@ public class FrontendMain extends Application {
         PersonalAccount.PersonalTabPane.getTabs().add(PersonalAccount.PersonalPassStorage);
         PersonalAccount.PersonalTabPane.getTabs().add(PersonalAccount.PersonalStrength);
         PersonalAccount.PersonalTabPane.getTabs().add(PersonalAccount.PersonalUserAccount);
+        WorkAccount.workTabPane.getTabs().add(WorkAccount.passStorage);
+        WorkAccount.workTabPane.getTabs().add(WorkAccount.passStrength);
+        WorkAccount.workTabPane.getTabs().add(WorkAccount.userAccount);
+        WorkAccount.workTabPane.getTabs().add(WorkAccount.brute);
     }
         
 }
