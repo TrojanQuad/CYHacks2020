@@ -1,0 +1,39 @@
+storageSubmit.setOnAction(e -> {
+            String userInput = storageUserName.getText();
+            String passInput = storagePassWord.getText();
+            String accountInput = storageAccount.getText();
+                
+            if(StorageBackEnd.ValidInput(userInput, passInput, accountInput, changePassword.isSelected())){
+                try {
+                    StorageBackEnd.Store();
+                    Scanner newScanner = new Scanner(StorageBackEnd.GetFile());
+                    GridPane newStoredInfo = new GridPane();
+                    int count = 0;
+                    String line = "";
+                    while(newScanner.hasNextLine()){
+                    line = newScanner.nextLine();
+                    switch (line.substring(0, 2)) {
+                        case "-U":
+                            newStoredInfo.add(new Label("Username: " + line.substring(2)), 0, count);
+                            break;
+                        case "-P":
+                            newStoredInfo.add(new Label(" Password: " + line.substring(2)), 1, count - 1);
+                            break;
+                        case "-A":
+                            newStoredInfo.add(new Label(" Account: " + line.substring(2)), 2, count - 2);
+                            break;
+                        default:
+                            break;
+                    }
+                    count++;
+                    }
+                    storedPassword.setContent(newStoredInfo);
+                } catch (IOException ex) {
+                    Logger.getLogger(WorkAccount.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                   
+            }
+            else{
+                workStoragePane.add(new Label("Invalid username or password"), 4, 1, 2, 1);
+            }
+        });
